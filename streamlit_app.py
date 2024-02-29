@@ -1,4 +1,5 @@
 import streamlit as st
+import pandas as pd
 
 # Define the Streamlit app
 def app():
@@ -42,7 +43,13 @@ def display_form1():
 def display_form2():
     st.session_state["current_form"] = 2
     form2 = st.form("training")
-    form2.subheader('Classifier Training')        
+    form2.subheader('Dataset')      
+
+    df = pd.read_csv('data_decison_trees.csv')
+    X = df.iloc[:,:-1].values
+    y = df.iloc[:,-1].values 
+
+    form2.text(df) 
     # insert the rest of the code to train the classifier here        
     form2.write('Display the training result')
 
